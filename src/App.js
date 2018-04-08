@@ -6,6 +6,10 @@ import KeyboardWrapper from './components/KeyboardWrapper';
 
 import { play, sounds } from './sound';
 
+// array cu toate padurile din React 
+// un obiect care are la cheie ID-ul pad-ului (controller) apasat si la value un pad (react) din array 
+//cand se apasa un pad(controoller) se apeleaza functia din react de onmousedown/onmouseup
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +38,8 @@ class App extends Component {
 
   onMIDISucces(data) {
     let allInputs = data.inputs.values();
-    let signal;
+    console.log(allInputs);
+    let signal; //brand 
     for(let input = allInputs.next(); input && !input.done; input = allInputs.next()) {
         input.value.onmidimessage = this.gotMIDImessage;
         signal = input.value.name;
@@ -79,29 +84,9 @@ class App extends Component {
     }
   }
 
-  playSound(e) {
-    e.preventDefault();
-
-    switch(e.target.innerHTML) {
-      case 'R': play(sounds['R']);
-      break;
-      case 'T': play(sounds['T']);
-      break;
-      case 'Y': play(sounds['Y']);
-      break;
-      case 'U': play(sounds['U']);
-      break;
-      case 'F': play(sounds['F']);
-      break;
-      case 'G': play(sounds['G']);
-      break;
-      case 'H': play(sounds['H']);
-      break;
-      case 'J': play(sounds['J']);
-      break;
-      default: console.log('error on click');
-      break;
-    }
+  playSound(key) {
+   play(sounds[key]);
+    console.log(key);
   }
 
 
