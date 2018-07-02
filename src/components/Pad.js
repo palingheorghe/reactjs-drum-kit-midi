@@ -26,13 +26,11 @@ export default class Pad extends Component {
     }
 
     render() {
-        return (<div className={"Pad" + (this.state.active ? " active" : "")}
-        onClick={() => this.props.eventHandler(this.props.padKey)}
-        onMouseDown={this.onMouseDownHandler}
-        onMouseUp={this.onMouseUpHandler}>
-        {this.props.padKey}
-    </div>);
+        return (<div 
+                    className={"Pad" + (this.state.active ? " active" : "")}
+                    onMouseDown={this.props.eventHandlerOn(this.props.padKey)}
+                    onMouseUp={this.props.eventHandlerOff(this.props.padKey)}>
+                        {this.props.padKey}
+                </div>);
     }
 }
-
-// onClick={() => this.props.eventHandler(this.props.padKey)}

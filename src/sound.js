@@ -18,7 +18,7 @@ const soundNameToAudio = {
     clap: new Audio(clap),
 }
 
-export const sounds = {
+const sounds = {
     'R': 'kick1',
     'T': 'snare1',
     'Y': 'clap',
@@ -29,8 +29,18 @@ export const sounds = {
     'J': 'hat2',
 };
 
+function createAudio(sound) {
+    return soundNameToAudio[sounds[sound]];
+}
+
 export function play(soundName) {
-    let audio = soundNameToAudio[soundName];
+    let audio = createAudio(soundName);
     audio.currentTime = 0;
     audio.play();
+}
+
+export function stop(soundName) {
+    let audio = createAudio(soundName);
+    audio.pause();
+    audio.currentTime = 0;
 }
